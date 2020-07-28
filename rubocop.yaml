@@ -1,0 +1,278 @@
+require: rubocop-rspec
+AllCops:
+  DisabledByDefault: true
+  Exclude:
+    # - '**/*.rb'
+    - 'bin/*'
+    - 'lib/fake_data_for_demo.rb'
+  Include:
+    - 'app/**/*.rb'
+    - 'lib/**/*.rb'
+    - 'spec/**/*.rb'
+Layout:
+  Enabled: true
+Layout/LineLength:
+  Enabled: false
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+Layout/MultilineMethodArgumentLineBreaks:
+  Enabled: true
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: 'consistent'
+  Enabled: true
+
+# Style:
+#   Enabled: true
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/AsciiComments:
+  Enabled: true
+Style/BlockComments:
+  Enabled: true
+Style/CommentAnnotation:
+  Enabled: true
+Style/Documentation:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: true
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+
+# Style/AndOr:
+#   EnforcedStyle: 'conditionals'
+#   Enabled: true
+#
+# Style/ArrayJoin:
+#   Enabled: true
+#
+# Style/Attr:
+#   Enabled: true
+#
+# Style/AutoResourceCleanup:
+#   Enabled: true
+#
+# Style/BlockDelimiters:
+#   EnforcedStyle: 'semantic'
+#   Enabled: true
+#
+# Style/BracesAroundHashParameters:
+#   Enabled: true
+#
+# Style/CaseEquality:
+#   Enabled: true
+#
+# Style/ClassMethods:
+#   Enabled: true
+#
+# Style/ColonMethodCall:
+#   Enabled: true
+#
+# Style/ColonMethodDefinition:
+#   Enabled: true
+#
+# Style/DefWithParentheses:
+#   Enabled: true
+#
+# Style/DoubleNegation:
+#   Enabled: true
+#
+# Style/EachForSimpleLoop:
+#   Enabled: true
+#
+# Style/EmptyBlockParameter:
+#   Enabled: true
+#
+# Style/EmptyElse:
+#   Enabled: true
+#
+# Style/EmptyLambdaParameter:
+#   Enabled: true
+#
+# Style/EmptyLiteral:
+#   Enabled: true
+#
+# Style/EmptyMethod:
+#   Enabled: true
+#
+# Style/EvenOdd:
+#   Enabled: true
+#
+# Style/For:
+#   Enabled: true
+#
+# Style/GuardClause:
+#   Enabled: true
+#
+# Style/HashSyntax:
+#   Enabled: true
+#
+# Style/IdenticalConditionalBranches:
+#   Enabled: true
+#
+# Style/IfInsideElse:
+#   Enabled: true
+#
+# Style/IfUnlessModifier:
+#   Enabled: true
+#
+# Style/IfUnlessModifierOfIfUnless:
+#   Enabled: true
+#
+# Style/IfWithSemicolon:
+#   Enabled: true
+#
+# Style/LambdaCall:
+#   Enabled: true
+#
+# Style/MethodCallWithArgsParentheses:
+#   Enabled: true
+#
+# Style/MethodCallWithoutArgsParentheses:
+#   Enabled: true
+#
+# Style/MethodCalledOnDoEndBlock:
+#   Enabled: true
+#
+# Style/MethodDefParentheses:
+#   Enabled: true
+#
+# Style/MinMax:
+#   Enabled: true
+#
+# Style/MissingElse:
+#   Enabled: true
+#
+# Style/MixinGrouping:
+#   Enabled: true
+#
+# Style/MixinUsage:
+#   Enabled: true
+#
+# Style/MultilineIfModifier:
+#   Enabled: true
+#
+# Style/MultilineIfThen:
+#   Enabled: true
+#
+# Style/MultilineMethodSignature:
+#   Enabled: true
+#
+# Style/MultilineTernaryOperator:
+#   Enabled: true
+#
+# Style/MultilineWhenThen:
+#   Enabled: true
+#
+# Style/MultipleComparison:
+#   Enabled: true
+#
+# Style/NegatedIf:
+#   Enabled: true
+#
+# Style/NegatedUnless:
+#   Enabled: true
+#
+# Style/NegatedWhile:
+#   Enabled: true
+#
+# Style/NestedModifier:
+#   Enabled: true
+#
+# Style/NestedParenthesizedCalls:
+#   Enabled: true
+#
+# Style/NestedTernaryOperator:
+#   Enabled: true
+#
+# Style/Next:
+#   Enabled: true
+#
+# Style/NilComparison:
+#   Enabled: true
+#
+# Style/NonNilCheck:
+#   Enabled: true
+#
+# Style/Not:
+#   Enabled: true
+#
+# Style/OneLineConditional:
+#   Enabled: true
+#
+# Style/OptionHash:
+#   Enabled: true
+#
+# Style/OptionalArguments:
+#   Enabled: true
+#
+# Style/OrAssignment:
+#   Enabled: true
+#
+# Style/ParenthesesAroundCondition:
+#   Enabled: true
+#
+# Style/Proc:
+#   Enabled: true
+#
+# Style/RandomWithOffset:
+#   Enabled: true
+#
+# Style/RedundantBegin:
+#   Enabled: true
+#
+# Style/RedundantCondition:
+#   Enabled: true
+#
+# Style/RedundantInterpolation:
+#   Enabled: true
+#
+# Style/RedundantParentheses:
+#   Enabled: true
+#
+# Style/SelfAssignment:
+#   Enabled: true
+#
+# Style/Semicolon:
+#   Enabled: true
+#
+# Style/SingleLineBlockParams:
+#   Enabled: true
+#
+# Style/StabbyLambdaParentheses:
+#   Enabled: true
+#
+# Style/StringHashKeys:
+#   Enabled: true
+#
+# Style/SymbolLiteral:
+#   Enabled: true
+#
+# Style/SymbolProc:
+#   Enabled: true
+#
+# Style/TernaryParentheses:
+#   Enabled: true
+#
+# Style/TrailingBodyOnClass:
+#   Enabled: true
+#
+# Style/TrailingBodyOnMethodDefinition:
+#   Enabled: true
+#
+# Style/TrailingBodyOnModule:
+#   Enabled: true
+#
+# Style/TrailingCommaInArguments:
+#   Enabled: true
+#
+# Style/TrailingMethodEndStatement:
+#   Enabled: true
+#
+# Style/WhileUntilDo:
+#   Enabled: true
+#
+# Style/WhileUntilModifier:
+#   Enabled: true
+#
+# Style/ZeroLengthPredicate:
+#   Enabled: true
