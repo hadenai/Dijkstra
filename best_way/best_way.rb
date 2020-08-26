@@ -1,56 +1,82 @@
 require 'byebug'
 
 class BestWay
-  POSITION_GLOBAL =
-    [
-      { 'position_a' => { 'ab' => 8, 'ae' => 8, 'af' => 5 } },
-      { 'position_b' => { 'ba' => 8, 'bc' => 4, 'bf' => 2 } },
-      { 'position_c' => { 'cb' => 4, 'cd' => 10, 'cf' => 7 } },
-      { 'position_d' => { 'dc' => 10, 'de' => 4, 'fd' => 8 } },
-      { 'position_e' => { 'ed' => 4, 'ea' => 8 } },
-      { 'position_f' => { 'fa' => 5, 'fb' => 2, 'fd' => 8, 'fc' => 7 } }
-    ].freeze
 
   def initialize(first_position, last_position)
     @first_position = first_position
     @last_position = last_position
+    @itinerary = 0
+    @already_visited = 0
+    @edges_distances =
+    [
+      [0, 5, 0, 9, 0],
+      [5, 0, 6, 0, 3],
+      [0, 6, 0, 8, 0],
+      [9, 0, 8, 0, 4],
+      [0, 3, 0, 4, 0]
+    ]
   end
 
-  def choose_first_points
-    first_points = @first_position.dig(@first_position.keys * '').min_by { |k, v| [v, k] }
+  def shortest_way
+    byebug
+    best_way = @different_itineraries.min
+    puts "Shortest way is #{best_way}"
   end
 
-  def choose_second_points
-    if choose_next_points.count > 1
-      second_position = choose_next_points.select { |position| position.keys != @first_position.keys }
+  # gère les cas ou l'itinéraire est finit
+  def next_itinerary
+      byebug
+    if @next_summit == @last_position
+      @different_itineraries = []
+      @different_itineraries << @itinerary
+      if @next_summit.first.count == 3
+        byebug
+        shortest_way
+      end
+      search_first_edges
     end
-    second_position = choose_next_points
-    two_points = second_position.first.dig(second_position.first.keys * '').min_by { |k, v| [v, k] }
+    search_next_related_summits
   end
 
-  def choose_next_points
-    BestWay::POSITION_GLOBAL.select do |position|
-      choose_first_point = Hash[*choose_first_points.flatten(1)]
-      position.values.first.has_key?((choose_first_point.keys * '').reverse)
+  # initialise l'algo à son point de départ
+  def search_first_edges
+    @itinerary = 0 if @itinerary != 0
+    @itinerary += @first_position.select{ |num| num > 0 }.min
+    search_next_related_summits
+  end
+
+  def update_itinerary
+    @itinerary += @next_summit.first.select{ |num| num > 0 }.min
+    delete_edge_already_made
+  end
+
+  # trouve le points points et vérifie qu'il n'est pas déjà passer
+  def search_next_related_summits
+    @already_visited += 1
+    if @already_visited == 1
+      selected_first_edges
+    else
+      selected_next_edges
     end
+    @next_summit
+    update_itinerary
+  end
+  # fonction pouur trouver le second points
+  def selected_first_edges
+    @next_summit = @edges_distances.select{ |edges| edges.include?(@first_position.select{ |distance| distance > 0}.min)if edges != @first_position }
   end
 
-  def add_the_smaller_points
-    @itinerary = (@first_position.keys * '')[-1] + (@last_position.keys * '')[-1]
-    @new_points = {}
-    @current_position = choose_first_points.first[0] + choose_second_points.first[1]
-    @new_points[@current_position] = choose_first_points.last + choose_second_points.last
-    @first_position.values.first.dig(@itinerary)
-    if @new_points.values.first < @first_position.values.first.dig(@itinerary)
-      @first_position.values.first[@itinerary] = @new_points[@current_position]
-    end
-    @new_points
+  # fonction pour trouver chaque autre points
+  def selected_next_edges
+    @next_summit = @edges_distances.select{ |edges| edges.include?(@next_summit.first.select{ |distance| distance > 0}.min)if edges != @next_summit && edges != @first_position  }
   end
 
-  def choose_itineray
-    choose_first_points
-    add_the_smaller_points
-    return choose_first_points if choose_first_points.first == @itinerary
-    return @new_points if @new_points.keys * '' == @itinerary
+  # fonction qui assure que chaque itinéraire est différent
+  def delete_edge_already_made
+    @edges_distances.each{ |edges| edges.delete(@next_summit.first.select{ |num| num > 0 }.min) }
+    next_itinerary
   end
+
+  # ne prend pas le chiffre que tu a pris précédement
+  # suprime le chiffre que tu viens de prendre sauf si c'est le 1er
 end
